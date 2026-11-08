@@ -1,0 +1,44 @@
+# CellScope ML — scRNA-seq classification research
+
+> **Publication status:** Curated, runnable feature-selection module from the CellScope ML v1.0 project. This repository is **not yet the full Streamlit application or the complete model-training pipeline**.
+
+CellScope ML is a Python research project investigating reproducible cell-type classification from single-cell RNA sequencing (scRNA-seq) measurements. Its broader development includes preprocessing, donor-aware validation, supervised classification and exploratory handling of uncertain predictions.
+
+## Code currently published
+
+| File | Purpose |
+| --- | --- |
+| [`feature_selection.py`](feature_selection.py) | `NonconstantKBest` transformer: training-fold variance filtering followed by ANOVA F-statistic gene selection; maps selected genes back to the original feature positions |
+| [`test_feature_selection.py`](test_feature_selection.py) | Smoke tests for constant-feature exclusion, dimensionality, and invalid feature budgets |
+
+The transformer follows the scikit-learn estimator interface and can be placed **inside an sklearn Pipeline**, allowing feature selection to be fitted on training folds rather than across the entire dataset.
+
+### Quick start
+
+Requires Python 3.10+.
+
+```bash
+python -m pip install -r requirements.txt
+python -m pytest -q test_feature_selection.py
+```
+
+Example:
+
+```python
+import numpy as np
+from feature_selection import NonconstantKBest
+
+X_train = np.array([[1, 0, 2], [2, 0, 3], [5, 0, 8], [6, 0, 9]], dtype=float)
+y_train = np.array([0, 0, 1, 1])
+selector = NonconstantKBest(k=1).fit(X_train, y_train)
+print(selector.get_support())  # 3-element boolean mask
+```
+
+## Research scope and limitations
+
+- Training-only feature selection is **one** component of proper leakage-resistant evaluation. Splitting donors before fitting transformations is still necessary.
+- This module is not a cell-type classifier, complete Streamlit UI, pretrained model, or biological validation.
+- Research results mentioned in the [CellScope case study](https://github.com/Daniello333/Daniello333/blob/main/projects/cellscope-ml.md) were produced by the broader v1.0 project; they **cannot** be reproduced by this repository alone.
+- The full project archive was curated separately; the remaining application components and assets are not yet published here.
+
+**Author:** Daniel Drabik · [Portfolio](https://github.com/Daniello333)
