@@ -1,5 +1,7 @@
 # CellScope ML — scRNA-seq classification research
 
+[![Python tests](https://github.com/Daniello333/cellscope-ml/actions/workflows/test.yml/badge.svg)](https://github.com/Daniello333/cellscope-ml/actions/workflows/test.yml)
+
 > **Publication status:** Curated, runnable feature-selection module from the CellScope ML v1.0 project. This repository is **not yet the full Streamlit application or the complete model-training pipeline**.
 
 CellScope ML is a Python research project investigating reproducible cell-type classification from single-cell RNA sequencing (scRNA-seq) measurements. Its broader development includes preprocessing, donor-aware validation, supervised classification and exploratory handling of uncertain predictions.
