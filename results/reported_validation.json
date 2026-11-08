@@ -1,0 +1,21 @@
+{
+  "project": "CellScope ML v1.0",
+  "kind": "historical_research_result_summary",
+  "source": "Research case study and validation output previously reviewed from user-supplied CellScope ML v1.0 archive",
+  "dataset": "Kang 2018 (internal annotated holdout)",
+  "holdout": {
+    "cells": 600,
+    "donors": 2,
+    "classes": 4,
+    "donor_disjoint": true
+  },
+  "metrics": {
+    "accuracy": 0.995,
+    "macro_f1": 0.9947
+  },
+  "caveats": [
+    "The complete evaluation source and data are not in this repository.",
+    "A single internal annotated holdout is not external biological or clinical validation.",
+    "Do not interpret as evidence of performance on unseen cell types."
+  ]
+}
